@@ -1,41 +1,39 @@
 const item = document.querySelector('.item');
 const placeholders = document.querySelectorAll('.placeholder');
 
-item.addEventListener('dragstart', dragstart);
-item.addEventListener('dragend', dragend);
+item.addEventListener('dragstart', dragStart);
+item.addEventListener('dragend', dragEnd);
 
 for (const placeholder of placeholders) {
-  placeholder.addEventListener('dragover', dragover);
-  placeholder.addEventListener('dragenter', dragenter);
-  placeholder.addEventListener('dragleave', dragleave);
-  placeholder.addEventListener('drop', dragdrop);
+  placeholder.addEventListener('dragover', dragOver);
+  placeholder.addEventListener('dragenter', dragEnter);
+  placeholder.addEventListener('dragleave', dragLeave);
+  placeholder.addEventListener('drop', dragDrop);
 }
 
-function dragstart(event) {
-  // console.log('drag start', event.target);
+function dragStart(event) {
   event.target.classList.add('hold');
   setTimeout(() => event.target.classList.add('hide'), 0);
   
 }
 
-function dragend(event) {
-  event.target.classList.remove('hold', 'hide');  
-  //event.target.className = 'item';
+function dragEnd(event) {
+  event.target.classList.remove('hold', 'hide');
 }
 
-function dragover(event) {
+function dragOver(event) {
   event.preventDefault();
 }
 
-function dragenter(event) {
+function dragEnter(event) {
   event.target.classList.add('hovered');
 }
 
-function dragleave(event) {
+function dragLeave(event) {
   event.target.classList.remove('hovered');
 }
 
-function dragdrop(event) {
+function dragDrop(event) {
   event.target.classList.remove('hovered');
   event.target.append(item);
 }
